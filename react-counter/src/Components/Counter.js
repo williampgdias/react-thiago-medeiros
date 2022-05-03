@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './Counter.css';
 
 const Counter = () => {
   const [counter, setCounter] = useState(0);
+
+  useEffect(() => {
+    console.log('rendered')
+  }, [counter]);
 
   const handleOnClick = operator => {
     const newValue = operator === '+' 
