@@ -1,20 +1,27 @@
+
 .counter {
   width: 300px;
   margin: 0 auto;
-  background-image: linear-gradient(to bottom right, #ffe53b, #ff005b);
+  background-color: #009900;
   color: #fff;
   text-align: center;
-  padding: 5px;
+  padding: 50px;
   border-radius: 10px;
+  box-shadow: 5px 5px 20px #000;
 }
 
 .counter span {
   display: block;
   font-size: 3em;
+  color: #000;
+  font-family: 'Roboto', sans-serif;
 }
 
 .counter button {
-  padding: 10px 40px;
+  padding: 20px;
   font-size: 2em;
   border-radius: 10px;
+  border: none;
+  margin: 10px;
+  width: 100px;
 }

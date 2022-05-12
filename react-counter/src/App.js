@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 
-import Albums from './Components/Albums';
-import Counter from './Components/Counter';
-import Users from './Components/Users';
+// Components
+import Albums from './Albums';
+import Counter from './Counter';
+import Users from './Users';
 
 const defaultPage = 'albums';
 
@@ -18,11 +19,11 @@ const pages = {
   users: {
     text: 'Users',
     component: Users,
-  }
+  },
 }
 
 function App() {
-  const [page, setPage] = useState(defaultPage);
+  const [ page, setPage ] = useState(defaultPage);
 
   const handleChangePage = page => {
     setPage(page);
@@ -30,12 +31,17 @@ function App() {
 
   const Page = pages[page].component;
 
+  // Essa é uma maneira de fazer isso!
+  // const Page = page === 'albums'
+  //   ? Albums
+  //   : Counter
+
   const pageNames = Object.keys(pages);
 
-  return (
+  return(
     <>
       {
-        pageNames.map(page => <button onClick={() => handleChangePage(page) }>{ pages[page].text }</button>)
+        pageNames.map(page => <button onClick={ () => handleChangePage(page) }>{ pages[page].text }</button>)
       }
 
       { Page && <Page /> }
