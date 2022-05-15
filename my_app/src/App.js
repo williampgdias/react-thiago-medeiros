@@ -1,3 +1,4 @@
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -11,11 +12,10 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/">
+        <Route path='/'>
           <Home />
         </Route>
       </Switch>
-      
     </Router>
   );
 }
