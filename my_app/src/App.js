@@ -7,6 +7,7 @@ import {
 
 // Components
 import TemplateDefault from './templates/Default';
+import Customers from './pages/Customers';
 import Home from './pages/Home';
 
 const App = () => {
@@ -14,6 +15,9 @@ const App = () => {
     <TemplateDefault>
       <Router>
         <Switch>
+        <Route path='/customers'>
+            <Customers />
+          </Route>
           <Route path='/'>
             <Home />
           </Route>
