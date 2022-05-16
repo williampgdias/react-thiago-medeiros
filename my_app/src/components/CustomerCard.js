@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 
@@ -10,10 +10,11 @@ import {
   Avatar,
   IconButton,
 } from '@material-ui/core';
+import ModalConfirm from './ModalConfirm';
 
 // Icons
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
+import EditIcon from '@material-ui/icons/Edit';
+ import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,26 +31,49 @@ const CustomerCard = ({
 }) => {
   const classes = useStyles();
 
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleToggleOpenModal = () => {
+    setOpenModal(!openModal);
+  };
+
+  const handleConfirmModal = () => {
+    alert('ok');
+  };
+
+  const handleRemoveCustomer = () => {
+    handleToggleOpenModal();
+  };
+
   return (
-    <Card className={ classNames(className, classes.root) }>
-      <CardHeader
-        avatar={
-          <Avatar aria-label="recipe" src={ avatar }>
-            R
-          </Avatar>
-        }
-        title={ `${ name } ${ lastname }` }
-        subheader={ email }
+    <>
+      <Card className={ classNames(className, classes.root) }>
+        <CardHeader
+          avatar={
+            <Avatar aria-label="recipe" src={ avatar }>
+              R
+            </Avatar>
+          }
+          title={ `${ name } ${ lastname }` }
+          subheader={ email }
+        />
+        <CardActions disableSpacing>
+          <IconButton aria-label="edit">
+            <EditIcon />
+          </IconButton>
+          <IconButton aria-label="delete" onClick={ handleRemoveCustomer }>
+            <DeleteIcon />
+          </IconButton>
+        </CardActions>
+      </Card>
+      <ModalConfirm
+      open={ openModal }
+      onClose={ handleToggleOpenModal }
+      onConfirm={ handleConfirmModal }
+      title="Are you sure want to delete?"
+      message="If you delete, you can't come back"
       />
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favourites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-      </CardActions>
-    </Card>
+    </>
   );
 }
 
