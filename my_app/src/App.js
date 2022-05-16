@@ -15,8 +15,8 @@ const App = () => {
     <TemplateDefault>
       <Router>
         <Switch>
-        <Route path='/customers'>
-            <Customers />
+          <Route path='/customers'>
+          <Page title='Customers' component={ Customers } />
           </Route>
           <Route path='/'>
             <Home />
