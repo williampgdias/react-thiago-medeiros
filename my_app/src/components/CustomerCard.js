@@ -14,7 +14,7 @@ import ModalConfirm from './ModalConfirm';
 
 // Icons
 import EditIcon from '@material-ui/icons/Edit';
- import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles((theme) => ({
   root: {
