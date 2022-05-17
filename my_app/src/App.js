@@ -12,6 +12,7 @@ import TemplatePage from './templates/Page';
 // Components
 import CustomersList from './pages/customers/List';
 import CustomersRegister from './pages/customers/Register';
+import CustomersEdit from './pages/customers/Edit';
 import Home from './pages/Home';
 
 const App = () => {
@@ -19,6 +20,9 @@ const App = () => {
     <Router>
       <TemplateDefault>
         <Switch>
+          <Route path='/customers/edit/:id'>
+            <TemplatePage title='Edit Customers' Component={ CustomersEdit } />
+          </Route>
           <Route path='/customers/add'>
             <TemplatePage title='Sign In' Component={ CustomersRegister } />
           </Route>
