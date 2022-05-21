@@ -1,24 +1,22 @@
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core';
 
-// Components
-import Header from '../partials/Header/Header';
-
 const useStyles = makeStyles(() => ({
   container: {
     padding: '15px 0',
   },
 }));
 
-const Default = ({ children }) => {
+const Clean = ({ Component }) => {
   const classes = useStyles();
 
   return (
     <>
-      <Header />
-      <Container className={classes.container}>{children}</Container>
+      <Container className={classes.container}>
+        <Component />
+      </Container>
     </>
   );
 };
 
-export default Default;
+export default Clean;
