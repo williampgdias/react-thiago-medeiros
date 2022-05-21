@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import {
   AppBar,
@@ -23,50 +22,58 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
 import useStyles from './Header.style';
 
-
-const Header = () => {
+const Header = ({ user }) => {
   const classes = useStyles();
   const history = useHistory();
 
-  const[menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleToggleMenu = () => {
-    setMenuOpen(!menuOpen)
+    setMenuOpen(!menuOpen);
   };
 
-  const handleMenuClick = route => {
+  const handleMenuClick = (route) => {
     history.push(route);
     handleToggleMenu();
-  }
+  };
 
   return (
     <>
-      <AppBar position="static">
+      <AppBar position='static'>
         <Toolbar>
-          <IconButton edge="start" color="inherit" aria-label="menu" onClick={ () => handleToggleMenu() }>
+          <IconButton
+            edge='start'
+            color='inherit'
+            aria-label='menu'
+            onClick={() => handleToggleMenu()}
+          >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={ classes.title }>
+          <Typography variant='h6' className={classes.title}>
             My App
           </Typography>
-          <Button color="inherit">Login</Button>
+          {user.logged ? (
+            <Typography variant='h6'>{user.email}</Typography>
+          ) : (
+            <Button color='inherit'>Login</Button>
+          )}
         </Toolbar>
       </AppBar>
-      <Drawer open={ menuOpen } onClose={ () => handleToggleMenu() }>
+      <Drawer open={menuOpen} onClose={() => handleToggleMenu()}>
         <List>
-          <ListItem button onClick={ () => handleMenuClick('/') }>
+          <ListItem button onClick={() => handleMenuClick('/')}>
             <ListItemIcon>
               <HomeIcon />
             </ListItemIcon>
             <ListItemText>Home</ListItemText>
           </ListItem>
-          <ListItem button onClick={ () => handleMenuClick('/customers') }>
+          <ListItem button onClick={() => handleMenuClick('/customers')}>
             <ListItemIcon>
               <PersonIcon />
             </ListItemIcon>
             <ListItemText>Customer List</ListItemText>
           </ListItem>
-          <ListItem button onClick={ () => handleMenuClick('/customers/add') }>
+          <ListItem button onClick={() => handleMenuClick('/customers/add')}>
             <ListItemIcon>
               <PersonAddIcon />
             </ListItemIcon>
@@ -75,7 +82,7 @@ const Header = () => {
         </List>
       </Drawer>
     </>
-  )
-}
+  );
+};
 
 export default Header;

@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-  TextField,
-  Button,
-  Typography,
-} from '@material-ui/core';
+import { TextField, Button, Typography } from '@material-ui/core';
+import { userHistory } from 'react-router-dom';
+import useAuth from '../state/auth';
+import { useHistory } from 'react-router-dom';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   wrapper: {
     margin: theme.spacing(3),
   },
@@ -14,13 +13,18 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = () => {
   const classes = useStyles();
+  const history = useHistory();
 
   const [form, setForm] = useState({
     email: '',
     password: '',
   });
 
-  const handleInputChange = (e) => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const { user, setUser } = useAuth();
+
+  const handleInputChange = e => {
     const { name, value } = e.target;
 
     setForm({
@@ -30,14 +34,20 @@ const Login = () => {
   };
 
   const handleFormSubmit = () => {
-    console.log(form);
+    setIsLoading(true);
+    setTimeout(() => {
+      setUser({
+        logged: true,
+        email: form.email,
+      });
+
+      history.push('/');
+    }, 4000);
   };
 
   return (
     <>
-      <Typography variant='h3'>
-        Restrict Access
-      </Typography>
+      <Typography variant='h3'>Restrict Access</Typography>
 
       <div className={classes.wrapper}>
         <TextField
@@ -60,7 +70,7 @@ const Login = () => {
           color='primary'
           onClick={handleFormSubmit}
         >
-          Log In
+          {isLoading ? 'Loading...' : 'Log In'}
         </Button>
       </div>
     </>

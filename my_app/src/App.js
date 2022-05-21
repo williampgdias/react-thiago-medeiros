@@ -1,8 +1,4 @@
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 // Templates
 import TemplateDefault from './templates/Default';
@@ -29,28 +25,16 @@ const App = () => {
 
         <TemplateDefault>
           <Route path='/customers/edit/:id'>
-            <TemplatePage
-              title='Edit Customers'
-              Component={CustomersEdit}
-            />
+            <TemplatePage title='Edit Customers' Component={CustomersEdit} />
           </Route>
           <Route path='/customers/add'>
-            <TemplatePage
-              title='Sign In'
-              Component={CustomersRegister}
-            />
+            <TemplatePage title='Sign In' Component={CustomersRegister} />
           </Route>
           <Route path='/customers'>
-            <TemplatePage
-              title='Customers List'
-              Component={CustomersList}
-            />
+            <TemplatePage title='Customers List' Component={CustomersList} />
           </Route>
           <Route path='/'>
-            <TemplatePage
-              title='Home'
-              Component={Home}
-            />
+            <TemplatePage title='Home' Component={Home} />
           </Route>
         </TemplateDefault>
       </Switch>
